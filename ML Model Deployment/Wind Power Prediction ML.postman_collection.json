@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "f40f2602-b4ac-48a0-b5d3-a6d376391d37",
+		"name": "Wind Power Prediction ML",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34233607"
+	},
+	"item": [
+		{
+			"name": "Power Prediction",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Farm_ID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "Forecasting_Horizon",
+							"value": "6",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/predict",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

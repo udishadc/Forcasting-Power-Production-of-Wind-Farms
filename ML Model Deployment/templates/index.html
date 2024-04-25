@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Wind Power Prediction</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://miro.medium.com/max/1400/1*tzYg7HxXQKyggeU-D5p-kg.jpeg');
+      background-size: cover;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 15px;
+    }
+    h1, h2 {
+      color: #f9a602;
+    }
+    .btn-primary {
+      background-color: #f9a602;
+      border-color: #f9a602;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #fff;
+      color: #f9a602;
+    }
+    .form-control, .btn {
+      border-radius: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h1 class="text-center mt-5">Wind Power Prediction</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <form action="{{ url_for('predict')}}" method="post" class="mt-5">
+              <div class="form-group">
+                <label for="Farm_ID">Farm ID</label>
+                <input type="text" class="form-control" id="Farm_ID" name="Farm_ID" placeholder="Enter Farm ID (1, 2, or 3)" required="required" />
+              </div>
+              <div class="form-group">
+                <label for="Forecasting_Horizon">Forecasting Horizon</label>
+                <select class="form-control" id="Forecasting_Horizon" name="Forecasting_Horizon" required="required">
+                  <option value="">Select Forecasting Horizon</option>
+                  <option value="6">6 hours</option>
+                  <option value="12">12 hours</option>
+                  <option value="24">24 hours</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Predict</button>
+            </form>
+            <div class="mt-5">
+              <p>Predicted Wind Power</p>
+              <ul>
+                {% for value in prediction_text %}
+                  <li>{{ value }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img src="{{ url_for('static', filename=plot_file) }}" alt="" style="width: 100%; height: auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
